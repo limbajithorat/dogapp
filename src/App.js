@@ -1,25 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from "react";
+import "./App.css";
+import { Outlet } from "react-router-dom";
+import AllBreeds from "./components/AllBreeds";
+import DogImages from "./components/DogImages";
+import Randomdog from "./components/RadomDog";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="maincontainer">
+        <nav className="navbar">
+          <ul>
+            <li>
+              <Link id="link" to="/alldogs">
+                DogImages
+              </Link>
+            </li>
+            <li>
+              <Link id="link" to="/threerandomdog">
+                Randomdog
+              </Link>
+            </li>
+            <li>
+              <Link id="link" to="/breeds">
+                AllBreeds
+              </Link>
+            </li>
+          </ul>
+        </nav>
+        <Outlet />
+
+        <Routes>
+          <Route>
+            <Route path="/alldogs" element={<DogImages />} />
+            <Route path="/threerandomdog" element={<Randomdog />} />
+            <Route path="/breeds" element={<AllBreeds />} />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
